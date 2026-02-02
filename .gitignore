@@ -1,0 +1,8 @@
+.settings/
+.classpath
+.project
+.factorypath
+
+!**/odp/.settings/
+!**/odp/.classpath
+!**/odp/.project

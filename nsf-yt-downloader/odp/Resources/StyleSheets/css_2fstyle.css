@@ -1,0 +1,167 @@
+html, body {
+	padding: 0;
+	margin: 0;
+	
+}
+
+body {
+	display: grid;
+}
+
+img {
+	object-fit: contain;
+	max-width: 100%;
+}
+
+details.expanding-form {
+	border: 1px solid #ccc;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	
+	summary {
+		font-weight: bold;
+		padding-bottom: 0.5rem;
+	}
+	
+	* {
+		max-width: 90%;
+	}
+}
+
+#main-nav {
+	grid-area: nav;
+	
+	a {
+		color: inherit;
+	}
+	
+	.links {
+		padding-left: 0;
+		
+		li {
+			list-style-type: none;
+			padding: 0.5rem;
+			margin-left: 0;
+			
+			&.active {
+				font-weight: bold;
+			}
+		}
+	}
+}
+
+#main-body {
+	grid-area: main;
+}
+
+.gallery {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 1em;
+	
+	article {
+		width: 275px;
+	}
+}
+
+.checkbox-col {
+	width: 1.5rem;
+}
+
+@media (max-width: 749px) {
+	body {
+		max-width: 100%;
+		grid-template-columns: minmax(0, 1fr);
+		grid-template-areas:
+			"nav"
+			"main";
+	}
+	
+	/* Nav bar toggle */
+	.mobile-nav {
+		cursor: pointer;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		background-color: rgba(255, 255, 255, 0.5);
+		display: inline-block !important;
+		width: 20px;
+		height: 20px;
+		
+		clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+		transform: rotate(90deg);
+		transition: ease 300ms;
+		
+		&:checked {
+			transform: rotate(180deg);
+			transition: ease 300ms;
+		}
+		&:not(:checked) ~ * {
+			display: none !important;
+		}
+		&:not(:checked) ~ * {
+			display: none !important;
+		}
+	}
+	
+	#main-body {
+		padding: 0.5em;
+	}
+}
+
+@media (min-width: 750px) {
+	html, body {
+		overflow: hidden;
+	}
+	
+	body {
+		grid-template-columns: 15em 1fr;
+		grid-template-areas:
+			"nav main";
+		gap: 0;
+		width: 100vw;
+		height: 100vh;
+	}
+	
+	#main-nav {
+		overflow: auto;
+		box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+		padding: 1em;
+		
+/* 		h1 { */
+/* 			background-image: url('../img/icon-color-241.png'); */
+/* 			background-repeat: no-repeat; */
+/* 			background-position: 0 center; */
+/* 			background-size: 48px 48px; */
+/* 			padding-left: 58px; */
+/* 		} */
+	}
+	.mobile-nav {
+		display: none !important;
+	}
+	
+	#main-body {
+		overflow: auto;
+		padding: 2em;
+	}
+	
+	article.game-display {
+		padding: 5rem;
+		padding-top: 20rem;
+		color: black;
+	
+		header {
+			display: grid;
+			grid-template-columns: 250px 1fr;
+			grid-template-areas: "image title";
+			
+			h2 { grid-area: title }
+			figure { grid-area: image }
+		}
+	}
+	
+	td.col-size {
+		width: 12rem;
+	}
+}
