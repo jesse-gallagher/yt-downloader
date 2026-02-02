@@ -18,7 +18,6 @@ import jakarta.enterprise.concurrent.ManagedExecutorService;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import lotus.domino.NotesException;
 import model.ServerConfig;
 
 @ApplicationScoped
@@ -99,7 +98,7 @@ public class DownloaderBean {
 	}
 	
 	@Asynchronous
-	public CompletableFuture<?> runDownload(String url, ServerConfig serverConfig) throws NotesException, IOException, InterruptedException {
+	public CompletableFuture<?> runDownload(String url, ServerConfig serverConfig) throws IOException, InterruptedException {
 		try {
 			File downloadDir = new File(serverConfig.getDownloadPath());
 			if(!downloadDir.exists()) {

@@ -1,12 +1,13 @@
 package controller;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
 import com.ibm.commons.util.StringUtil;
 
 import jakarta.data.Order;
 import jakarta.data.Sort;
 import jakarta.data.page.PageRequest;
 import jakarta.inject.Inject;
-import jakarta.inject.Named;
 import jakarta.mvc.Controller;
 import jakarta.mvc.Models;
 import jakarta.mvc.View;
@@ -18,8 +19,6 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.MediaType;
-import lotus.domino.NotesException;
-import lotus.domino.Session;
 import model.ServerConfig;
 
 @Controller
@@ -31,8 +30,8 @@ public class ServerConfigController {
 	@Inject
 	private Models models;
 	
-	@Inject @Named("dominoSession")
-	private Session session;
+	@Inject @ConfigProperty(name="ServerKeyFileName_Owner")
+	private String serverName;
 	
 	@GET
 	@View("serverConfig/list.jsp")
@@ -43,9 +42,9 @@ public class ServerConfigController {
 	@Path("@new")
 	@GET
 	@View("serverConfig/edit.jsp")
-	public void composeConfig() throws NotesException {
+	public void composeConfig() {
 		var config = new ServerConfig();
-		config.setServerName(session.getServerName());
+		config.setServerName(serverName);
 		
 		models.put("serverConfig", config);
 	}

@@ -2,9 +2,10 @@ package controller;
 
 import java.io.IOException;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
 import bean.DownloaderBean;
 import jakarta.inject.Inject;
-import jakarta.inject.Named;
 import jakarta.mvc.Controller;
 import jakarta.mvc.Models;
 import jakarta.mvc.View;
@@ -16,8 +17,6 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.MediaType;
-import lotus.domino.NotesException;
-import lotus.domino.Session;
 import model.ServerConfig;
 
 @Controller
@@ -32,8 +31,8 @@ public class DownloadController {
 	@Inject
 	private ServerConfig.Repository serverConfigs;
 	
-	@Inject @Named("dominoSession")
-	private Session session;
+	@Inject @ConfigProperty(name="ServerKeyFileName_Owner")
+	private String serverName;
 	
 	@GET
 	@View("downloads/list.jsp")
@@ -43,8 +42,7 @@ public class DownloadController {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public String startDownload(@FormParam("url") String url) throws NotesException, IOException, InterruptedException {
-		String serverName = session.getServerName();
+	public String startDownload(@FormParam("url") String url) throws IOException, InterruptedException {
 		var config = serverConfigs.findByServerName(serverName)
 			.findFirst()
 			.orElseThrow(() -> new IllegalStateException("No config found for " + serverName));
