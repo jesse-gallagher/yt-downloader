@@ -6,3 +6,5 @@
 !**/odp/.settings/
 !**/odp/.classpath
 !**/odp/.project
+
+.DS_Store
