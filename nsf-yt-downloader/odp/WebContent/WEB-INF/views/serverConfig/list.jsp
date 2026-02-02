@@ -18,7 +18,7 @@
 		<tbody>
 		<c:forEach items="${serverConfigs}" var="serverConfig">
 			<tr>
-				<td><a href="${mvc.basePath}/serverConfigs/${serverConfig.documentId}"><c:out value="${serverConfig.serverName}"/></a></td>
+				<td><a href="${mvc.basePath}/serverConfigs/${serverConfig.documentId}"><c:out value="${encoder.abbreviateName(serverConfig.serverName)}"/></a></td>
 				<td><c:out value="${serverConfig.downloadPath}"/></td>
 			</tr>
 		</c:forEach>
