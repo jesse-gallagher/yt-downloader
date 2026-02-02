@@ -43,6 +43,15 @@ public class DownloaderBean {
 		public Process getProcess() {
 			return process;
 		}
+		
+		public String getLastLine() {
+			String out = this.output.toString();
+			if(out.length() < 2) {
+				return "";
+			}
+			int lastpos = out.lastIndexOf('\n', out.length()-2);
+			return out.substring(lastpos).trim();
+		}
 	}
 	
 	@Inject @Named("java:comp/DefaultManagedExecutorService")

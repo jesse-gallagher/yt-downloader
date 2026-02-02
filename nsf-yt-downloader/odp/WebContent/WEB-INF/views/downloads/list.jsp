@@ -26,8 +26,8 @@
 		<tbody>
 		<c:forEach items="${downloads}" var="download">
 			<tr>
-				<td><c:out value="${download.url}"/></td>
-				<td style="white-space: pre-wrap"><c:out value="${download.output}"/></td>
+				<td><a href="${mvc.basePath}/downloads/${encoder.b64(download.url)}"><c:out value="${download.url}"/></a></td>
+				<td><c:out value="${download.lastLine}"/></td>
 				<td><c:out value="${download.process}"/></td>
 			</tr>
 		</c:forEach>
