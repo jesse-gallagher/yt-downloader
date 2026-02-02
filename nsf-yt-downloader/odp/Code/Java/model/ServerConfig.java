@@ -17,6 +17,7 @@ public class ServerConfig {
 	@Column private String serverName;
 	@Column private String ytDlpPath;
 	@Column private String downloadPath;
+	@Column private String firefoxProfilePath;
 	
 	public String getDocumentId() {
 		return documentId;
@@ -44,5 +45,12 @@ public class ServerConfig {
 	}
 	public void setDownloadPath(String downloadPath) {
 		this.downloadPath = downloadPath;
+	}
+	
+	public String getFirefoxProfilePath() {
+		return firefoxProfilePath;
+	}
+	public void setFirefoxProfilePath(String firefoxProfilePath) {
+		this.firefoxProfilePath = firefoxProfilePath;
 	}
 }

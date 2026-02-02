@@ -64,7 +64,8 @@ public class ServerConfigController {
 			@FormParam("documentId") String documentId,
 			@FormParam("serverName") String serverName,
 			@FormParam("ytDlpPath") String ytDlpPath,
-			@FormParam("downloadPath") String downloadPath
+			@FormParam("downloadPath") String downloadPath,
+			@FormParam("firefoxProfilePath") String firefoxProfilePath
 	) {
 		ServerConfig config;
 		if(StringUtil.isEmpty(documentId)) {
@@ -76,8 +77,9 @@ public class ServerConfigController {
 		config.setServerName(serverName);
 		config.setYtDlpPath(ytDlpPath);
 		config.setDownloadPath(downloadPath);
+		config.setFirefoxProfilePath(firefoxProfilePath);
 		config = configRepository.save(config);
 		
-		return "redirect:serverConfigs/" + config.getDocumentId();
+		return "redirect:serverConfigs";
 	}
 }

@@ -13,6 +13,9 @@
 		<dt><c:out value="${translation.process}"/></dt>
 		<dd><c:out value="${download.process}"/></dd>
 		
+		<dt><c:out value="${translation.command}"/></dt>
+		<dd><c:out value="${download.command}"/></dd>
+		
 		<dt><c:out value="${translation.output}"/></dt>
 		<dd style="white-space: pre-wrap"><c:out value="${download.output}"/></dd>
 	</dl>

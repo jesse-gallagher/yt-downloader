@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.Base64;
 
 import bean.DownloaderBean;
 import jakarta.inject.Inject;
@@ -50,7 +49,7 @@ public class DownloadController {
 			.findFirst()
 			.orElseThrow(() -> new IllegalStateException("No config found for " + serverName));
 		
-		downloaderBean.runDownload(url, config.getYtDlpPath(), config.getDownloadPath());
+		downloaderBean.runDownload(url, config);
 		return "redirect:downloads";
 	}
 	
@@ -58,9 +57,8 @@ public class DownloadController {
 	@GET
 	@View("downloads/show.jsp")
 	public void showDownload(@PathParam("downloadId") String downloadId) {
-		var url = new String(Base64.getUrlDecoder().decode(downloadId));
 		var download = downloaderBean.getDownloads().stream()
-			.filter(d -> url.equals(d.getUrl()))
+			.filter(d -> downloadId.equals(d.getId()))
 			.findFirst()
 			.orElseThrow(() -> new NotFoundException("Could not find download for provided ID"));
 		

@@ -21,14 +21,26 @@
 				<th><c:out value="${translation.url}"/></th>
 				<th><c:out value="${translation.output}"/></th>
 				<th><c:out value="${translation.process}"/></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${downloads}" var="download">
 			<tr>
-				<td><a href="${mvc.basePath}/downloads/${encoder.b64(download.url)}"><c:out value="${download.url}"/></a></td>
+				<td><a href="${mvc.basePath}/downloads/${download.id}"><c:out value="${download.url}"/></a></td>
 				<td><c:out value="${download.lastLine}"/></td>
 				<td><c:out value="${download.process}"/></td>
+				<td>
+					<c:set var="pct" value="${download.percentComplete}"/>
+					<c:choose>
+					<c:when test="${pct < 0}">
+						<progress></progress>
+					</c:when>
+					<c:otherwise>
+						<progress value="${pct}" max="100"></progress>
+					</c:otherwise>
+					</c:choose>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

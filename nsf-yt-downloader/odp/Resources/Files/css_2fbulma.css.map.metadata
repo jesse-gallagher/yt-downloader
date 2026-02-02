@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <note class="form" xmlns="http://www.lotus.com/dxl">
   <item name="$Flags">
-    <text>34C=Q</text>
+    <text>345CgQ</text>
   </item>
   <item name="$FlagsExt" sign="true">
     <text>D</text>
@@ -10,13 +10,10 @@
     <datetime dst="true">20250419T160136,00-04</datetime>
   </item>
   <item name="$FileNames" sign="true">
-    <text>bulma.min.css</text>
-  </item>
-  <item name="$MimeCharSet" sign="true">
-    <text>UTF-8</text>
+    <text>bulma.css.map</text>
   </item>
   <item name="$TITLE" sign="true">
-    <text>css/bulma.min.css</text>
+    <text>css/bulma.css.map</text>
   </item>
   <item name="$DesignerBuild" sign="true">
     <text>Build V1451_01212026</text>
